@@ -62,6 +62,7 @@ test {
 repositories {
   mavenCentral()
   maven { url 'https://oss.sonatype.org/content/repositories/snapshots/' }
+  maven { url 'https://hub.spigotmc.org/nexus/content/repositories/snapshots/' }
   mavenLocal()
 }
 
@@ -74,6 +75,8 @@ dependencies {
   testAnnotationProcessor "org.projectlombok:lombok:${lombok}"
   testAnnotationProcessor "org.jetbrains:annotations:${annotations}"
   // Annotations
+
+  compileOnlyApi 'org.spigotmc:spigot-api:1.18.2-R0.1-SNAPSHOT'
 
   testImplementation "org.junit.jupiter:junit-jupiter:${junitjupiter}"
 }

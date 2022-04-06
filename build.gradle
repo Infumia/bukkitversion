@@ -90,7 +90,7 @@ publishing {
       artifact tasks.javadocJar
       pom {
         name = 'BukkitVersion'
-        description = 'A Minecraft library to parse the running server's version.'
+        description = "A Minecraft library to parse the running server's version."
         url = 'https://infumia.com.tr/'
         licenses {
           license {

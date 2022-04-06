@@ -47,6 +47,7 @@ public final class BukkitVersion {
   /**
    * the matcher.
    */
+  @Getter
   @NotNull
   private final Matcher matcher;
 

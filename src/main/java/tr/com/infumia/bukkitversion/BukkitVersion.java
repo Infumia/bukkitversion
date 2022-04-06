@@ -2,9 +2,7 @@ package tr.com.infumia.bukkitversion;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-import lombok.EqualsAndHashCode;
 import lombok.Getter;
-import lombok.ToString;
 import lombok.experimental.Accessors;
 import org.bukkit.Bukkit;
 import org.jetbrains.annotations.NotNull;

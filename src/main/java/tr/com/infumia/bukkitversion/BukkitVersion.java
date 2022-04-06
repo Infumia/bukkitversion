@@ -1,9 +1,9 @@
 package tr.com.infumia.bukkitversion;
 
+import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
-import lombok.RequiredArgsConstructor;
 import lombok.ToString;
 import lombok.experimental.Accessors;
 import org.bukkit.Bukkit;
@@ -14,21 +14,13 @@ import org.jetbrains.annotations.NotNull;
  */
 @ToString
 @EqualsAndHashCode
-@RequiredArgsConstructor
 @Accessors(fluent = true)
 public final class BukkitVersion {
 
   /**
-   * the intance.
+   * the instance.
    */
   public static final BukkitVersion INSTANCE = new BukkitVersion();
-
-  /**
-   * pattern of the server text. the pattern looks like (major)_(minor)_R(micro).
-   */
-  @NotNull
-  private static final Pattern PATTERN =
-    Pattern.compile("v?(?<major>[0-9]+)[._](?<minor>[0-9]+)(?:[._]R(?<micro>[0-9]+))?(?<sub>.*)");
 
   /**
    * the major.
@@ -46,11 +38,34 @@ public final class BukkitVersion {
   public static final int MINOR = BukkitVersion.INSTANCE.minor();
 
   /**
+   * pattern of the server text. the pattern looks like (major)_(minor)_R(micro).
+   */
+  @NotNull
+  private static final Pattern PATTERN =
+    Pattern.compile("v?(?<major>[0-9]+)[._](?<minor>[0-9]+)(?:[._]R(?<micro>[0-9]+))?(?<sub>.*)");
+
+  /**
+   * the matcher.
+   */
+  @NotNull
+  private final Matcher matcher;
+
+  /**
    * server version text.
    */
   @Getter
   @NotNull
   private final String version;
+
+  /**
+   * ctor.
+   *
+   * @param version the version.
+   */
+  public BukkitVersion(@NotNull final String version) {
+    this.version = version;
+    this.matcher = BukkitVersion.PATTERN.matcher(version);
+  }
 
   /**
    * ctor.
@@ -94,7 +109,8 @@ public final class BukkitVersion {
    * @return the part of the given key.
    */
   private int get(@NotNull final String key) {
-    final var matcher = BukkitVersion.PATTERN.matcher(this.version);
-    return matcher.matches() ? Integer.parseInt(matcher.group(key)) : 0;
+    return this.matcher.matches()
+      ? Integer.parseInt(this.matcher.group(key))
+      : 0;
   }
 }

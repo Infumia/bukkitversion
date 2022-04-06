@@ -12,8 +12,6 @@ import org.jetbrains.annotations.NotNull;
 /**
  * gets minecraft version from package version of the server.
  */
-@ToString
-@EqualsAndHashCode
 @Accessors(fluent = true)
 public final class BukkitVersion {
 

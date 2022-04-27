@@ -16,29 +16,28 @@ public final class BukkitVersion {
   /**
    * the instance.
    */
-  public static final BukkitVersion INSTANCE = new BukkitVersion();
+  public static final BukkitVersion INSTANCE;
 
   /**
    * the major.
    */
-  public static final int MAJOR = BukkitVersion.INSTANCE.major();
+  public static final int MAJOR;
 
   /**
    * the micro.
    */
-  public static final int MICRO = BukkitVersion.INSTANCE.micro();
+  public static final int MICRO;
 
   /**
    * the minor.
    */
-  public static final int MINOR = BukkitVersion.INSTANCE.minor();
+  public static final int MINOR;
 
   /**
    * pattern of the server text. the pattern looks like (major)_(minor)_R(micro).
    */
   @NotNull
-  private static final Pattern PATTERN =
-    Pattern.compile("v?(?<major>[0-9]+)[._](?<minor>[0-9]+)(?:[._]R(?<micro>[0-9]+))?(?<sub>.*)");
+  private static final Pattern PATTERN;
 
   /**
    * the matcher.
@@ -53,6 +52,14 @@ public final class BukkitVersion {
   @Getter
   @NotNull
   private final String version;
+
+  static {
+    INSTANCE = new BukkitVersion();
+    PATTERN = Pattern.compile("v?(?<major>[0-9]+)[._](?<minor>[0-9]+)(?:[._]R(?<micro>[0-9]+))?(?<sub>.*)");
+    MAJOR = BukkitVersion.INSTANCE.major();
+    MICRO = BukkitVersion.INSTANCE.micro();
+    MINOR = BukkitVersion.INSTANCE.minor();
+  }
 
   /**
    * ctor.

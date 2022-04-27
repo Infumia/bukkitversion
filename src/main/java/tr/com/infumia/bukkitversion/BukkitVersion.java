@@ -54,8 +54,8 @@ public final class BukkitVersion {
   private final String version;
 
   static {
-    INSTANCE = new BukkitVersion();
     PATTERN = Pattern.compile("v?(?<major>[0-9]+)[._](?<minor>[0-9]+)(?:[._]R(?<micro>[0-9]+))?(?<sub>.*)");
+    INSTANCE = new BukkitVersion();
     MAJOR = BukkitVersion.INSTANCE.major();
     MICRO = BukkitVersion.INSTANCE.micro();
     MINOR = BukkitVersion.INSTANCE.minor();
